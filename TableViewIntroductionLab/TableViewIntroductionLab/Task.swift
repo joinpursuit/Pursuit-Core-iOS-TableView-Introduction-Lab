@@ -63,5 +63,22 @@ struct Task {
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
     }
-
 }
+    
+//func countTaskByStatus() -> Void {
+//    var completedTaksCounter = 0
+//    var inProgressTasksCounter = 0
+//    var notStartedTasksCounter = 0
+//
+//    for task in Task.allTasks {
+//        if task.status == Task.Status.completed {
+//            completedTaksCounter += 1
+//        } else if task.status == Task.Status.inProgress{
+//            inProgressTasksCounter += 1
+//        } else if task.status == Task.Status.notStarted {
+//            notStartedTasksCounter += 1
+//        }
+//    }
+//}
+
+
