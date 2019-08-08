@@ -13,15 +13,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var taskTableView: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Task.allTasks.count
+        switch section {
+        case 0:
+            return Task.organizeTasksByStatus()[0].count
+        case 1:
+            return Task.organizeTasksByStatus()[1].count
+        case 2:
+            return Task.organizeTasksByStatus()[2].count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "individualTask", for: indexPath)
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
-        cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent))"
+        setCellLabelText(cell: cell, indexPath: indexPath)
         return cell
+    }
+    
+    func setCellLabelText(cell: UITableViewCell, indexPath: IndexPath) {
+        cell.textLabel?.text = "\(Task.organizeTasksByStatus()[indexPath.section][indexPath.row].name)"
+        cell.detailTextLabel?.text = "\(Task.organizeTasksByStatus()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent))"
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Not Started"
+        case 1:
+            return "In Progress"
+        case 2:
+            return "Completed"
+        default:
+            return "Not Available"
+        }
     }
     
     override func viewDidLoad() {
