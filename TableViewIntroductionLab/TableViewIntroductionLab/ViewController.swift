@@ -19,10 +19,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var count = 0
         let cell = UITableViewCell()
-        cell.backgroundColor = .red
+        cell.backgroundColor = .lightGray
+        cell.textLabel?.numberOfLines = 0
         for i in Task.allTasks{
             if indexPath.row == count{
-                cell.textLabel?.text = "\(i.name)  Due: \(i.dueDate)"
+                cell.textLabel?.text = "\(i.name)  \n Due: \(i.dueDate)"
             }
             count += 1
         }
