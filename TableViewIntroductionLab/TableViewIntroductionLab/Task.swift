@@ -5,10 +5,10 @@ struct Task: CustomStringConvertible {
         return "\(dueDate)"
     }
     
-    enum Status {
-        case notStarted
-        case inProgress
-        case completed
+    enum Status: String {
+        case notStarted = "Not Started"
+        case inProgress = "In Progress"
+        case completed = "Completed"
     }
     
     let name: String
