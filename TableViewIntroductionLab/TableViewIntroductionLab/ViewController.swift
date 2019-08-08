@@ -37,8 +37,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
 
-
-
+    @IBAction func SortButton(_ sender: UIButton) {
+    switchSort(sort: SortOutlet)
+        
+    }
+    
+    @IBOutlet weak var SortOutlet: UIButton!
+    
+    func switchSort(sort: UIButton) {
+        if sort.titleLabel!.text == "Sort Descending" {
+            sort.titleLabel!.text = "Sort Ascending"
+        }
+    }
+    
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let names = logic[indexPath.row].name
