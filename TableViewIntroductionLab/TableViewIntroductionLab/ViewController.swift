@@ -18,8 +18,8 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     
 //    func isEnabledButton(){
-//        for  in sortOrderButton{
-//            butt.isEnabled = true
+//        for _ in sortOrderButton{
+//            _.isEnabled = true
 //        }
 //    }
 //    
