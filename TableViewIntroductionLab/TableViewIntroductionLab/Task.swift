@@ -9,12 +9,13 @@ struct Task {
     
     let name: String
     let status: Status
-    let dueDate: Date    
+    let dueDate: Date
     
     static var allTasks: [Task] {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en")
         dateFormatter.dateFormat = "MM-dd-yyyy"
+
         return [
             Task(name: "Create project roadmap",
                  status: .inProgress,
@@ -65,3 +66,4 @@ struct Task {
     }
 
 }
+
