@@ -67,14 +67,3 @@ struct Task {
         ]
     }
 }
-    
-//    func taskStatus () {
-//    // organize tasks by completion by switch case
-//    // if else statement
-//
-//        if status == notstarted {
-//         //thrn do something or place something somewhere
-//        }
-//    }
-
-

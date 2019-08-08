@@ -25,11 +25,41 @@ class ViewController: UIViewController, UITableViewDataSource {
 //    
     
     
+    var notStarted: [Task] = []
+    var complete: [Task] = []
+    var inProgress: [Task] = []
     
     var tasks = Task.allTasks
+    
+    
+    func separator () {
+        for i in Task.allTasks {
+            if i.status == .completed {
+                complete.append(i)
+            } else {
+                if i.status == .inProgress {
+                    inProgress.append(i)
+                } else {
+                    if i.status == .notStarted {
+                        notStarted.append(i)
+                    }
+                }
+            }
+        }
+    }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        switch section {
+        case 0:
+       return  notStarted.count
+        case 1:
+         return inProgress.count
+        case 2:
+            return complete.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,6 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
        // tableView.delegate = self
         tableView.dataSource = self
+        separator()
         
         // Do any additional setup after loading the view.
     }
