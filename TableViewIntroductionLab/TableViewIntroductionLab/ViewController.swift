@@ -18,7 +18,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "individualTask", for: indexPath)
-        cell.textLabel?.text = "\(Task.allTasks[indexPath.row])\n\(Task.allTasks[indexPath.row].dueDate.description)"
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)\n\(Task.allTasks[indexPath.row].dueDate.description)"
         return cell
     }
     
