@@ -10,7 +10,7 @@ struct Task {
     let name: String
     let status: Status
     let dueDate: Date    
-    
+
     static var allTasks: [Task] {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en")
@@ -64,4 +64,7 @@ struct Task {
         ]
     }
 
+    
+    
 }
+
