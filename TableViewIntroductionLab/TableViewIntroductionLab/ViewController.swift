@@ -17,7 +17,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellOne")
+        let rowsToSetup = indexPath.row
+        let taskInRow = Task.allTasks[rowsToSetup]
+        cell.
     }
     
 
