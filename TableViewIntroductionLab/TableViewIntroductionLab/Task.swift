@@ -1,15 +1,19 @@
 import Foundation
+import UIKit
+
+enum Status {
+    case notStarted
+    case inProgress
+    case completed
+}
 
 struct Task {
-    enum Status {
-        case notStarted
-        case inProgress
-        case completed
-    }
-    
+   
+
     let name: String
     let status: Status
-    let dueDate: Date    
+    let dueDate: Date
+
     
     static var allTasks: [Task] {
         let dateFormatter = DateFormatter()
@@ -63,5 +67,25 @@ struct Task {
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
     }
+    
+    func getCompletedTasks() -> [Task] {
+        return Task.allTasks.filter({ (task) -> Bool in
+            return task.status == .completed
+        })
+    }
+    
+    func getNotStartedTasks() -> [Task] {
+        return Task.allTasks.filter({ (task) -> Bool in
+            return task.status == .notStarted
+        })
+    }
+    
+    func getInProgressTasks() -> [Task] {
+        return Task.allTasks.filter({ (task) -> Bool in
+            return task.status == .inProgress
+        })
+    }
+    
+    
 
 }

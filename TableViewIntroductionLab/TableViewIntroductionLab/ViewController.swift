@@ -10,16 +10,35 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return inProgress.count
+        case 1:
+            return notStarted.count
+        case 2:
+            return completed.count
+        default:
+            return 0
+        }
+        
+    }
+    
+    
     
     let logic = Task.allTasks
-    let tasks: [[Task]] = []
-
+    var completed: [Task] = []
+    var inProgress: [Task] = []
+    var notStarted: [Task] = []
+    
+//    var completed = getCompletedTasks()
+//    var inProgress = getInProgressTasks()
+//    var notStarted = getNotStartedTasks()
     
     @IBOutlet weak var tableView: UITableView!
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return logic.count
-    }
+
+
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let names = logic[indexPath.row].name
@@ -34,29 +53,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let name = logic[indexPath.row].name
 //        cell.textLabel?.text = "\(name) : \(date)"
     
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
     
     
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "In Progress"
+        case 1:
+            return "Not Started"
+        case 2:
+            return "Complete"
+        default:
+            return "Never"
+        }
+    }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//    }
-    
-
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return logic.count
-//    }
-
+    func separate(){
+        for i in Task.allTasks {
+        completed = i.getCompletedTasks()
+        notStarted = i.getNotStartedTasks()
+        inProgress = i.getInProgressTasks()
+        }
+    }
     override func viewDidLoad() {
         tableView.dataSource = self
         tableView.delegate = self
+        separate()
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
 
 }
+
+
+
+    
 
