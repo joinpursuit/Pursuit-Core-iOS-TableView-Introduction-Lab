@@ -1,6 +1,10 @@
 import Foundation
 
-struct Task {
+struct Task: CustomStringConvertible {
+    var description: String{
+        return "\(dueDate)"
+    }
+    
     enum Status {
         case notStarted
         case inProgress
