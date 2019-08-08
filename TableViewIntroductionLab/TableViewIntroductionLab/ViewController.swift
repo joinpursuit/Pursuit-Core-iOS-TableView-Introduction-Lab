@@ -22,31 +22,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        let date = logic[indexPath.row].dueDate
-        let name = logic[indexPath.row].name
-        cell.textLabel?.text = "\(name) : \(date)"
+        let names = logic[indexPath.row].name
+        let dates = "\(logic[indexPath.row].dueDate)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "name")!
+        cell.textLabel?.text = names
+        cell.detailTextLabel!.text = dates
+        
         return cell
     }
+//        let date = logic[indexPath.row].dueDate
+//        let name = logic[indexPath.row].name
+//        cell.textLabel?.text = "\(name) : \(date)"
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: (Int) -> Int ) {
-//        switch
-//    }
+
     
     
     
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        }
     
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //
 //    }
     
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return logic.count
+//    }
 
     override func viewDidLoad() {
         tableView.dataSource = self
