@@ -9,12 +9,15 @@ struct Task {
     
     let name: String
     let status: Status
-    let dueDate: Date    
+    let dueDate: Date
+    
     
     static var allTasks: [Task] {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.dateFormat = "MM-dd-yyyy"
+        //dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "MM-DD-YYYY"
         return [
             Task(name: "Create project roadmap",
                  status: .inProgress,
@@ -63,5 +66,15 @@ struct Task {
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
     }
-
 }
+    
+//    func taskStatus () {
+//    // organize tasks by completion by switch case
+//    // if else statement
+//
+//        if status == notstarted {
+//         //thrn do something or place something somewhere
+//        }
+//    }
+
+

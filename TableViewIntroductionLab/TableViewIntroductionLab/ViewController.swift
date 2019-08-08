@@ -10,6 +10,22 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     
+    @IBOutlet weak var sortOrderButton: UIButton!
+    
+    @IBAction func sortOrderButton(_ sender: UIButton) {
+        
+    }
+
+    
+//    func isEnabledButton(){
+//        for  in sortOrderButton{
+//            butt.isEnabled = true
+//        }
+//    }
+//    
+    
+    
+    
     var tasks = Task.allTasks
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,6 +43,23 @@ class ViewController: UIViewController, UITableViewDataSource {
         return myTable
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Not Started"
+        case 1:
+            return "In Progress"
+        case 2:
+            return "Completed"
+        default:
+            return "will not execute"
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
