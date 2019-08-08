@@ -21,6 +21,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-Ry-FhW">
                                 <rect key="frame" x="289" y="44" width="115" height="30"/>
                                 <state key="normal" title="Sort Descending"/>
+                                <connections>
+                                    <action selector="sortButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P5Y-63-nOY"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QQU-ii-bft">
                                 <rect key="frame" x="0.0" y="74" width="414" height="788"/>
@@ -65,6 +68,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="button" destination="gxb-Ry-FhW" id="OMR-tj-iR8"/>
                         <outlet property="tableView" destination="QQU-ii-bft" id="1k4-Tg-he7"/>
                     </connections>
                 </viewController>

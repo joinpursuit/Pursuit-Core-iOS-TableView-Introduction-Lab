@@ -8,18 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var tableView: UITableView!
-
+    
     var notStartedArray = Task.allTasks.filter {$0.status == .notStarted}
     var inProgressArray = Task.allTasks.filter {$0.status == .inProgress}
     var completedArray = Task.allTasks.filter {$0.status == .completed}
+    var ascending = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.dataSource = self
+        button.setTitle("Sort Ascending", for: .normal)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,13 +63,13 @@ class ViewController: UIViewController, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             cell.textLabel?.text = notStartedArray[indexPath.row].name
-            cell.detailTextLabel?.text = Task.allTasks[indexPath.row].dueDate.description
+            cell.detailTextLabel?.text = notStartedArray[indexPath.row].dueDate.description
         case 1:
             cell.textLabel?.text = inProgressArray[indexPath.row].name
-            cell.detailTextLabel?.text = Task.allTasks[indexPath.row].dueDate.description
+            cell.detailTextLabel?.text = inProgressArray[indexPath.row].dueDate.description
         case 2:
             cell.textLabel?.text = completedArray[indexPath.row].name
-            cell.detailTextLabel?.text = Task.allTasks[indexPath.row].dueDate.description
+            cell.detailTextLabel?.text = completedArray[indexPath.row].dueDate.description
         default:
             fatalError()
             
@@ -74,6 +77,29 @@ class ViewController: UIViewController, UITableViewDataSource {
 
         return cell
     }
-
+    
+    @IBAction func sortButton(_ sender: UIButton) {
+        
+        switch ascending {
+        case true:
+            notStartedArray = notStartedArray.sorted {$0.dueDate.compare($1.dueDate) == .orderedAscending}
+            inProgressArray = inProgressArray.sorted {$0.dueDate.compare($1.dueDate) == .orderedAscending}
+            completedArray = completedArray.sorted {$0.dueDate.compare($1.dueDate) == .orderedAscending}
+            
+            tableView.reloadData()
+            button.setTitle("Sort Descending", for: .normal)
+            ascending = false
+        case false:
+            notStartedArray = notStartedArray.sorted {$0.dueDate.compare($1.dueDate) == .orderedDescending}
+            inProgressArray = inProgressArray.sorted {$0.dueDate.compare($1.dueDate) == .orderedDescending}
+            completedArray = completedArray.sorted {$0.dueDate.compare($1.dueDate) == .orderedDescending}
+            
+            tableView.reloadData()
+            button.setTitle("Sort Ascending", for: .normal)
+            ascending = true
+        }
+    }
+    
+    
 }
 
