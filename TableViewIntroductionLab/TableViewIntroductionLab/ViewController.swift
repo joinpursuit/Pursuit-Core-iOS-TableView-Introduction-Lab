@@ -11,7 +11,22 @@ import UIKit
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var sortButton: UIButton!
+    var sortBy: ScrollByDate = .ascending
+    
+    @IBAction func sortButtonPressed(_ sender: UIButton) {
+        switch sortBy {
+        case .ascending:
+            sortBy = .descending
+            sortButton.setTitle("Sort Ascending", for: .normal)
+            self.tableView.reloadData()
+        case .descending:
+            sortBy = .ascending
+            sortButton.setTitle("Sort Descending", for: .normal)
+            self.tableView.reloadData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -28,20 +43,37 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellOne")
         let rowsToSetup = indexPath.row
-        let taskInRow = Task.allTasks[rowsToSetup]
-        if let unwrapCell = cell {
-            unwrapCell.textLabel?.text = "\(taskInRow.name)"
-            unwrapCell.detailTextLabel?.text = "\(taskInRow.dueDate.description(with: .autoupdatingCurrent))"
-            return unwrapCell
-        }
+        //let taskInRow = Task.allTasks[rowsToSetup]
+        var taskSortedAscending = sortByDate(arr: Task.allTasks, sort: .ascending)
+        let notStartedA = filterAccordingToStatus(arr: taskSortedAscending, state: .notStarted)
+        let inProgressA = filterAccordingToStatus(arr: taskSortedAscending, state: .inProgress)
+        let completedA = filterAccordingToStatus(arr: taskSortedAscending, state: .completed)
+        taskSortedAscending = notStartedA + inProgressA + completedA
+        let taskInRowAscending = taskSortedAscending[rowsToSetup]
         
+        var taskSortedDescending = sortByDate(arr: Task.allTasks, sort: .descending)
+        let notStartedD = filterAccordingToStatus(arr: taskSortedDescending, state: .notStarted)
+        let inProgressD = filterAccordingToStatus(arr: taskSortedDescending, state: .inProgress)
+        let completedD = filterAccordingToStatus(arr: taskSortedDescending, state: .completed)
+        taskSortedDescending = notStartedD + inProgressD + completedD
+        let taskInRowDescending = taskSortedDescending[rowsToSetup]
+        
+        if let unwrapCell = cell {
+            switch sortBy {
+            case .ascending:
+                unwrapCell.textLabel?.text = "\(taskInRowAscending.name)"
+                unwrapCell.detailTextLabel?.text = "\(taskInRowAscending.dueDate.description(with: .autoupdatingCurrent))"
+                return unwrapCell
+            case .descending:
+                unwrapCell.textLabel?.text = "\(taskInRowDescending.name)"
+                unwrapCell.detailTextLabel?.text = "\(taskInRowDescending.dueDate.description(with: .autoupdatingCurrent))"
+                return unwrapCell
+            }
+        }
         return UITableViewCell()
-        //cell.textLabel?.text = "\(taskInRow.name)\n\(taskInRow.dueDate.description(with: .autoupdatingCurrent))"
-       // cell.textLabel?.numberOfLines = 2
-        //cell.textLabel?.text = taskInRow.name
-        //cell.detailTextLabel?.text = taskInRow.dueDate.description
         
     }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
