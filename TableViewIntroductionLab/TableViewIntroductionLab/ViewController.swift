@@ -15,9 +15,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return Task.allTasks.count
+            return filterAccordingToStatus(arr: Task.allTasks, state: .notStarted).count
         case 1:
-            return Task.allTasks.count
+            return filterAccordingToStatus(arr: Task.allTasks, state: .inProgress).count
+        case 2:
+            return filterAccordingToStatus(arr: Task.allTasks, state: .completed).count
         default:
             return Task.allTasks.count
         }
@@ -32,6 +34,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             unwrapCell.detailTextLabel?.text = "\(taskInRow.dueDate.description(with: .autoupdatingCurrent))"
             return unwrapCell
         }
+        
         return UITableViewCell()
         //cell.textLabel?.text = "\(taskInRow.name)\n\(taskInRow.dueDate.description(with: .autoupdatingCurrent))"
        // cell.textLabel?.numberOfLines = 2
@@ -41,8 +44,28 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Not Started"
+        case 1:
+            return "In Progress"
+        case 2:
+            return "Completed"
+        default:
+            print("default")
+        }
+        return "didn't work"
+    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let header = UIView()
+//        header.backgroundColor = .white
+//        return header
+//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

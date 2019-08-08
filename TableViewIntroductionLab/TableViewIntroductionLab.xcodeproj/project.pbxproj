@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D8F447522FCB064004F3F8E /* FilterAccordingToStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8F447422FCB064004F3F8E /* FilterAccordingToStatus.swift */; };
 		CD55F86E22F9DD69001EF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD55F86D22F9DD69001EF64D /* AppDelegate.swift */; };
 		CD55F87022F9DD69001EF64D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD55F86F22F9DD69001EF64D /* ViewController.swift */; };
 		CD55F87322F9DD69001EF64D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD55F87122F9DD69001EF64D /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D8F447422FCB064004F3F8E /* FilterAccordingToStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAccordingToStatus.swift; sourceTree = "<group>"; };
 		CD55F86A22F9DD69001EF64D /* TableViewIntroductionLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewIntroductionLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD55F86D22F9DD69001EF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD55F86F22F9DD69001EF64D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				CD55F86D22F9DD69001EF64D /* AppDelegate.swift */,
 				CD55F86F22F9DD69001EF64D /* ViewController.swift */,
 				CD55F87F22F9DDE2001EF64D /* Task.swift */,
+				4D8F447422FCB064004F3F8E /* FilterAccordingToStatus.swift */,
 				CD55F87122F9DD69001EF64D /* Main.storyboard */,
 				CD55F87422F9DD6A001EF64D /* Assets.xcassets */,
 				CD55F87622F9DD6A001EF64D /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				CD55F87022F9DD69001EF64D /* ViewController.swift in Sources */,
 				CD55F88022F9DDE2001EF64D /* Task.swift in Sources */,
 				CD55F86E22F9DD69001EF64D /* AppDelegate.swift in Sources */,
+				4D8F447522FCB064004F3F8E /* FilterAccordingToStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
