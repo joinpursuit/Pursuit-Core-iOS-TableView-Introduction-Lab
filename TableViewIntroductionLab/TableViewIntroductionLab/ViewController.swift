@@ -16,11 +16,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
-        cell.textLabel?.text = Task.allTasks[indexPath.row].name
+        let cell = taskTableView.dequeueReusableCell(withIdentifier: "cellTask")
         
         
-        return cell
+        if let unwrappedCell = cell {
+            unwrappedCell.textLabel?.text = Task.allTasks[indexPath.row].name
+        
+            unwrappedCell.detailTextLabel?.text = Task.allTasks[indexPath.row].dueDate.description(with: .autoupdatingCurrent)
+        
+        
+            return unwrappedCell
+        }
+        return UITableViewCell()
     }
     
     @IBOutlet weak var taskTableView: UITableView!
