@@ -61,12 +61,40 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         if let unwrapCell = cell {
             switch sortBy {
             case .ascending:
-                unwrapCell.textLabel?.text = "\(taskInRowAscending.name)"
-                unwrapCell.detailTextLabel?.text = "\(taskInRowAscending.dueDate.description(with: .autoupdatingCurrent))"
+                switch indexPath.section {
+                case 0:
+                    let taskInNotStarted = notStartedA[indexPath.row]
+                    unwrapCell.textLabel?.text = "\(taskInNotStarted.name)"
+                    unwrapCell.detailTextLabel?.text = "\(taskInNotStarted.dueDate.description(with: .autoupdatingCurrent))"
+                case 1:
+                    let taskInInProgress = inProgressA[indexPath.row]
+                    unwrapCell.textLabel?.text = "\(taskInInProgress.name)"
+                    unwrapCell.detailTextLabel?.text = "\(taskInInProgress.dueDate.description(with: .autoupdatingCurrent))"
+                case 2:
+                    let taskInCompleted = completedA[indexPath.row]
+                    unwrapCell.textLabel?.text = "\(taskInCompleted.name)"
+                    unwrapCell.detailTextLabel?.text = "\(taskInCompleted.dueDate.description(with: .autoupdatingCurrent))"
+                default:
+                    print("test")
+                }
                 return unwrapCell
             case .descending:
-                unwrapCell.textLabel?.text = "\(taskInRowDescending.name)"
-                unwrapCell.detailTextLabel?.text = "\(taskInRowDescending.dueDate.description(with: .autoupdatingCurrent))"
+                switch indexPath.section {
+                case 0:
+                    let taskInNotStarted = notStartedD[indexPath.row]
+                    unwrapCell.textLabel?.text = "\(taskInNotStarted.name)"
+                    unwrapCell.detailTextLabel?.text = "\(taskInNotStarted.dueDate.description(with: .autoupdatingCurrent))"
+                case 1:
+                    let taskInInProgress = inProgressD[indexPath.row]
+                    unwrapCell.textLabel?.text = "\(taskInInProgress.name)"
+                    unwrapCell.detailTextLabel?.text = "\(taskInInProgress.dueDate.description(with: .autoupdatingCurrent))"
+                case 2:
+                    let taskInCompleted = completedD[indexPath.row]
+                    unwrapCell.textLabel?.text = "\(taskInCompleted.name)"
+                    unwrapCell.detailTextLabel?.text = "\(taskInCompleted.dueDate.description(with: .autoupdatingCurrent))"
+                default:
+                    print("test")
+                }
                 return unwrapCell
             }
         }
