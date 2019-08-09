@@ -18,32 +18,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ourCell", for: indexPath)
-        //        let cell2 = tableView.dequeueReusableCell(withIdentifier: "secondCell", for: indexPath)
-        //        let cell3 = tableView.dequeueReusableCell(withIdentifier: "thirdCell", for: indexPath)
         
         cell.backgroundColor = .lightGray
         cell.textLabel?.numberOfLines = 0
-        
-        switch indexPath.section {
-        case 0:
-            if Task.Status.notStarted == .notStarted{
-                cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
-                cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].description)"
-            }
-        case 1:
-            if Task.Status.inProgress == .inProgress{
-                cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
-                cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].description)"
-            }
-        case 2:
-            if Task.Status.inProgress == .inProgress{
-                cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
-                cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].description)"
-            }
-        default:
-            print("broken")
-        }
+        cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
+        cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].description)"
         return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

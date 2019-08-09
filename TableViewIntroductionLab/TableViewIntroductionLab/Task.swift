@@ -67,5 +67,29 @@ struct Task: CustomStringConvertible {
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
     }
-
+    
+    var started = [Task]()
+    var progress = [Task]()
+    var completed = [Task]()
+    
+    mutating func newStatus(_ theStatus: Status)->[[Task]]{
+        switch theStatus{
+        case .notStarted:
+            started.append([Task])
+            break
+            
+        case .inProgress:
+            progress.append([Task])
+            break
+            
+        case .completed:
+            completed.append([Task])
+            break
+            
+        default:
+            print("nothing")
+        }
+        return [started,progress,completed]
+    }
+    
 }
