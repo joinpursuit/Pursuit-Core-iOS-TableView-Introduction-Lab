@@ -12,7 +12,8 @@ class ViewController: UIViewController,
                     UITableViewDataSource,
                     UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
             return Task.allTasks.filter({ $0.status == .notStarted }).count
@@ -31,7 +32,8 @@ class ViewController: UIViewController,
         return 3
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
         
         switch section {
         case 0:
@@ -45,7 +47,8 @@ class ViewController: UIViewController,
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Returns a reusable table-view cell object located by its identifier refering to the Prototype so we can set up different styles and use them however you want.
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "cellTask")
@@ -54,23 +57,29 @@ class ViewController: UIViewController,
             
             if indexPath.section == 0 {
             // we passed the name to the textLabel
-            unwrappedCell.textLabel?.text = Task.allTasks.filter({ $0.status == .notStarted })[indexPath.row].name
+            unwrappedCell.textLabel?.text =
+                Task.allTasks.filter({ $0.status == .notStarted })[indexPath.row].name
             // passed the date into the subtitle using the detailTextLabel and return the date as a string using the duedate's description property.
-            unwrappedCell.detailTextLabel?.text = Task.allTasks.filter({ $0.status == .notStarted })[indexPath.row].dueDate.description(with: .autoupdatingCurrent)
+            unwrappedCell.detailTextLabel?.text =
+                Task.allTasks.filter({ $0.status == .notStarted })[indexPath.row].dueDate.description(with: .autoupdatingCurrent)
             }
             
             if indexPath.section == 1 {
-                // we passed the name to the textLabel
-                unwrappedCell.textLabel?.text = Task.allTasks.filter({ $0.status == .inProgress })[indexPath.row].name
-                // passed the date into the subtitle using the detailTextLabel and return the date as a string using the duedate's description property.
-                unwrappedCell.detailTextLabel?.text = Task.allTasks.filter({ $0.status == .inProgress })[indexPath.row].dueDate.description(with: .autoupdatingCurrent)
+             
+                unwrappedCell.textLabel?.text =
+                    Task.allTasks.filter({ $0.status == .inProgress })[indexPath.row].name
+              
+                unwrappedCell.detailTextLabel?.text =
+                    Task.allTasks.filter({ $0.status == .inProgress })[indexPath.row].dueDate.description(with: .autoupdatingCurrent)
             }
             
             if indexPath.section == 2 {
-                // we passed the name to the textLabel
-                unwrappedCell.textLabel?.text = Task.allTasks.filter({ $0.status == .completed })[indexPath.row].name
-                // passed the date into the subtitle using the detailTextLabel and return the date as a string using the duedate's description property.
-                unwrappedCell.detailTextLabel?.text = Task.allTasks.filter({ $0.status == .completed
+               
+                unwrappedCell.textLabel?.text =
+                    Task.allTasks.filter({ $0.status == .completed })[indexPath.row].name
+              
+                unwrappedCell.detailTextLabel?.text =
+                    Task.allTasks.filter({ $0.status == .completed
                     
                 })[indexPath.row].dueDate.description(with: .autoupdatingCurrent)
             }
