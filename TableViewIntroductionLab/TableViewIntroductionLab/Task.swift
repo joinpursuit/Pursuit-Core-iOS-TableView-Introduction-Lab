@@ -75,11 +75,19 @@ struct Task {
     }
     
     static func getTaskName(indexPath: IndexPath) -> String {
-        return Task.organizeTasksByStatus()[indexPath.section][indexPath.row].name
+        if ascendingOrder {
+            return Task.sortByAscendingDates()[indexPath.section][indexPath.row].name
+        } else {
+            return Task.sortByDescendingDates()[indexPath.section][indexPath.row].name
+        }
     }
     
     static func getDueDate(indexPath: IndexPath) -> String {
-        return Task.organizeTasksByStatus()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
+        if ascendingOrder {
+            return Task.sortByAscendingDates()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
+        } else {
+            return Task.sortByDescendingDates()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
+        }
     }
     
     static func sortByAscendingDates() -> [[Task]] {
