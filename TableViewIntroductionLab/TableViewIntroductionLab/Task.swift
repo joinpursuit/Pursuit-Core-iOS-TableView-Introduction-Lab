@@ -81,5 +81,22 @@ struct Task {
     static func getDueDate(indexPath: IndexPath) -> String {
         return Task.organizeTasksByStatus()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
     }
-
+    
+    static func sortByAscendingDates() -> [[Task]] {
+        let notStartedSorted = Task.organizeTasksByStatus()[0].sorted(by: { $0.dueDate < $1.dueDate } )
+        let inProgressSorted = Task.organizeTasksByStatus()[1].sorted(by: { $0.dueDate < $1.dueDate } )
+        let completedSorted = Task.organizeTasksByStatus()[2].sorted(by: { $0.dueDate < $1.dueDate } )
+        
+        return [notStartedSorted, inProgressSorted, completedSorted]
+        
+    }
+    
+    static func sortByDescendingDates() -> [[Task]] {
+        let notStartedSorted = Task.organizeTasksByStatus()[0].sorted(by: { $0.dueDate > $1.dueDate } )
+        let inProgressSorted = Task.organizeTasksByStatus()[1].sorted(by: { $0.dueDate > $1.dueDate } )
+        let completedSorted = Task.organizeTasksByStatus()[2].sorted(by: { $0.dueDate > $1.dueDate } )
+        
+        return [notStartedSorted, inProgressSorted, completedSorted]
+    }
+    
 }
