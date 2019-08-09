@@ -9,7 +9,9 @@ struct Task {
     
     let name: String
     let status: Status
-    let dueDate: Date    
+    let dueDate: Date
+    
+    static var ascendingOrder = true
     
     static var allTasks: [Task] {
         let dateFormatter = DateFormatter()
@@ -63,5 +65,46 @@ struct Task {
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
     }
-
+    
+    static func organizeTasksByStatus() -> [[Task]] {
+        let notStarted = Task.allTasks.filter { $0.status == .notStarted }
+        let inProgress = Task.allTasks.filter { $0.status == .inProgress }
+        let completed = Task.allTasks.filter { $0.status == .completed }
+        
+        return [notStarted, inProgress, completed]
+    }
+    
+    static func getTaskName(indexPath: IndexPath) -> String {
+        if ascendingOrder {
+            return Task.sortByAscendingDates()[indexPath.section][indexPath.row].name
+        } else {
+            return Task.sortByDescendingDates()[indexPath.section][indexPath.row].name
+        }
+    }
+    
+    static func getDueDate(indexPath: IndexPath) -> String {
+        if ascendingOrder {
+            return Task.sortByAscendingDates()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
+        } else {
+            return Task.sortByDescendingDates()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
+        }
+    }
+    
+    static func sortByAscendingDates() -> [[Task]] {
+        let notStartedSorted = Task.organizeTasksByStatus()[0].sorted(by: { $0.dueDate < $1.dueDate } )
+        let inProgressSorted = Task.organizeTasksByStatus()[1].sorted(by: { $0.dueDate < $1.dueDate } )
+        let completedSorted = Task.organizeTasksByStatus()[2].sorted(by: { $0.dueDate < $1.dueDate } )
+        
+        return [notStartedSorted, inProgressSorted, completedSorted]
+        
+    }
+    
+    static func sortByDescendingDates() -> [[Task]] {
+        let notStartedSorted = Task.organizeTasksByStatus()[0].sorted(by: { $0.dueDate > $1.dueDate } )
+        let inProgressSorted = Task.organizeTasksByStatus()[1].sorted(by: { $0.dueDate > $1.dueDate } )
+        let completedSorted = Task.organizeTasksByStatus()[2].sorted(by: { $0.dueDate > $1.dueDate } )
+        
+        return [notStartedSorted, inProgressSorted, completedSorted]
+    }
+    
 }
