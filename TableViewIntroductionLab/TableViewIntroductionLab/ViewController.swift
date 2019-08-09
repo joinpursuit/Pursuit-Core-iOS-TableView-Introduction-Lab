@@ -32,8 +32,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func setCellLabelText(cell: UITableViewCell, indexPath: IndexPath) {
-        cell.textLabel?.text = "\(Task.organizeTasksByStatus()[indexPath.section][indexPath.row].name)"
-        cell.detailTextLabel?.text = "\(Task.organizeTasksByStatus()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent))"
+        cell.textLabel?.text = "\(Task.getTaskName(indexPath: indexPath))"
+        cell.detailTextLabel?.text = "\(Task.getDueDate(indexPath: indexPath))"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

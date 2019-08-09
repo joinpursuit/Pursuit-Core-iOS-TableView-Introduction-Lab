@@ -71,5 +71,13 @@ struct Task {
         
         return [notStarted, inProgress, completed]
     }
+    
+    static func getTaskName(indexPath: IndexPath) -> String {
+        return Task.organizeTasksByStatus()[indexPath.section][indexPath.row].name
+    }
+    
+    static func getDueDate(indexPath: IndexPath) -> String {
+        return Task.organizeTasksByStatus()[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
+    }
 
 }
