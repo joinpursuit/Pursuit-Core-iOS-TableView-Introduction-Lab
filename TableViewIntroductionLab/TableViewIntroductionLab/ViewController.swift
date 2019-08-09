@@ -21,10 +21,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.backgroundColor = .lightGray
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
-        cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].description)"
+        
+        switch indexPath.section{
+        case 0:
+            if Task.allTasks[indexPath.row].status == .notStarted{
+            cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
+            cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].description)"
+            }
+        case 1:
+            if Task.allTasks[indexPath.row].status == .inProgress{
+                cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
+                cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].description)"
+            }
+        case 2:
+            if Task.allTasks[indexPath.row].status == .completed{
+                cell.textLabel?.text = "\(Task.allTasks[indexPath.row].name)"
+                cell.detailTextLabel?.text = "\(Task.allTasks[indexPath.row].description)"
+            }
+        default:
+            print("broken")
+        }
         return cell
     }
+  
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -42,7 +61,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return "you broke it"
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
