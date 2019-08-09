@@ -65,20 +65,9 @@ struct Task {
     }
     
     static func organizeTasksByStatus() -> [[Task]] {
-        var notStarted = [Task]()
-        var inProgress = [Task]()
-        var completed = [Task]()
-        
-        for task in Task.allTasks {
-            switch task.status {
-            case .notStarted:
-                notStarted.append(task)
-            case .inProgress:
-                inProgress.append(task)
-            case .completed:
-                completed.append(task)
-            }
-        }
+        let notStarted = Task.allTasks.filter { $0.status == .notStarted }
+        let inProgress = Task.allTasks.filter { $0.status == .inProgress }
+        let completed = Task.allTasks.filter { $0.status == .completed }
         
         return [notStarted, inProgress, completed]
     }
