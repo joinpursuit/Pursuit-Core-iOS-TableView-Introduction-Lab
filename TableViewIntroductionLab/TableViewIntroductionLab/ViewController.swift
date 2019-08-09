@@ -60,6 +60,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         taskTableView.dataSource = self
     }
 
-
+    @IBAction func toggleSortOrder(_ sender: UIButton) {
+        switch Task.ascendingOrder {
+        case true:
+            sortButton.setTitle("Sort: Ascending", for: UIControl.State.normal)
+        case false:
+            sortButton.setTitle("Sort: Descending", for: UIControl.State.normal)
+        }
+        Task.ascendingOrder = !Task.ascendingOrder
+        taskTableView.reloadData()
+    }
 }
 
