@@ -9,7 +9,9 @@ struct Task {
     
     let name: String
     let status: Status
-    let dueDate: Date    
+    let dueDate: Date
+    
+    static var ascendingOrder = true
     
     static var allTasks: [Task] {
         let dateFormatter = DateFormatter()
