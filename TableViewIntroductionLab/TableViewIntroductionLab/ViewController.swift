@@ -12,6 +12,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     
+    let organizedTasks = Task.organizeByStatus()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -26,17 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     //returns amount of sections in view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0 :
-            return Task.organizeByStatus()[0].count
-        case 1:
-            return Task.organizeByStatus()[1].count
-        case 2:
-            return Task.organizeByStatus()[2].count
-        default:
-            return -1
-        }
-
+        return organizedTasks[section].count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -52,25 +44,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    //returns content of each cell
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell()
-//        cell.textLabel?.text = Task.allTasks[indexPath.row].name
-//        return cell
-//    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TasksCell", for: indexPath)
-        if indexPath.section == 0 {
-            cell.textLabel?.text = Task.allTasks[indexPath.row].name
-            cell.detailTextLabel?.text = Task.allTasks[indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
-        } else if indexPath.section == 1 {
-            cell.textLabel?.text = Task.allTasks[indexPath.row].name
-            cell.detailTextLabel?.text = Task.allTasks[indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
-        } else if indexPath.section == 2 {
-            cell.textLabel?.text = Task.allTasks[indexPath.row].name
-            cell.detailTextLabel?.text = Task.allTasks[indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
-        }
+        let name = organizedTasks[indexPath.section][indexPath.row].name
+        let date = organizedTasks[indexPath.section][indexPath.row].dueDate.description(with: Locale.autoupdatingCurrent)
+        
+        cell.textLabel?.text = name
+        cell.detailTextLabel?.text = date
+     
         return cell
     }
 

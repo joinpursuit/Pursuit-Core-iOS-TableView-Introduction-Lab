@@ -79,24 +79,12 @@ struct Task {
                 notStarted.append(task)
             }
         }
+
         return [completed, inProgress, notStarted]
     }
 }
 
-//func countTaskByStatus() -> Void {
-//    var completedTaksCounter = 0
-//    var inProgressTasksCounter = 0
-//    var notStartedTasksCounter = 0
-//
-//    for task in Task.allTasks {
-//        if task.status == Task.Status.completed {
-//            completedTaksCounter += 1
-//        } else if task.status == Task.Status.inProgress{
-//            inProgressTasksCounter += 1
-//        } else if task.status == Task.Status.notStarted {
-//            notStartedTasksCounter += 1
-//        }
-//    }
+
 
 
 
