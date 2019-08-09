@@ -63,5 +63,28 @@ struct Task {
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
     }
+    
+    static func organizeByStatus() -> [[Task]] {
+        var completed = [Task]()
+        var inProgress = [Task]()
+        var notStarted = [Task]()
+        
+        for task in Task.allTasks {
+            switch task.status {
+            case .completed:
+                completed.append(task)
+            case .inProgress:
+                inProgress.append(task)
+            case .notStarted:
+                notStarted.append(task)
+            }
+        }
 
+        return [completed, inProgress, notStarted]
+    }
 }
+
+
+
+
+
