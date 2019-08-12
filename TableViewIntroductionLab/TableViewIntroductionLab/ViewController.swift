@@ -15,7 +15,6 @@ class ViewController: UIViewController, UITableViewDataSource {
     @IBAction func sortOrderButton(_ sender: UIButton) {
         
     }
-
     
 //    func isEnabledButton(){
 //        for _ in sortOrderButton{
