@@ -101,7 +101,16 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return tasks[section][section].status.rawValue
+        switch section{
+        case 0:
+            return "Not Started"
+        case 1:
+            return "In Progress"
+        case 2:
+            return "Completed"
+        default:
+            return "Unknown Section"
+        }
     }
 }
 

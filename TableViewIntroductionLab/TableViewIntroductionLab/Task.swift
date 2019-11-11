@@ -13,7 +13,7 @@ struct Task {
     
     static var allTasks: [Task] {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "MM-dd-yyyy"
         
         return [
