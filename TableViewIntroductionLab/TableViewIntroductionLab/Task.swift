@@ -1,7 +1,7 @@
 import Foundation
 
 struct Task {
-    enum Status {
+    enum Status:String, CaseIterable {
         case notStarted
         case inProgress
         case completed
@@ -62,6 +62,41 @@ struct Task {
                  status: .completed,
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
+    }
+    
+    static func getSections() -> [[Task]]{
+        let sortedTasks = allTasks.sorted{$0.status.rawValue < $1.status.rawValue}
+        
+        //empty array of sections
+        var sectionsArr = Array(repeating: [Task](), count: Status.allCases.count)
+        
+        var currentIndex = 0
+        var currentStatus = sortedTasks.first?.status.rawValue ?? "Pursuit"
+        
+        for task in sortedTasks{
+            if task.status.rawValue == currentStatus{
+                sectionsArr[currentIndex].append(task)
+            } else {
+                currentIndex += 1
+                currentStatus = task.status.rawValue
+                sectionsArr[currentIndex].append(task)
+            }
+        }
+        
+        for section in sectionsArr{
+            for sectionName in section{
+                if sectionName.status.rawValue == "completed"{
+                    currentStatus = "Completed"
+                } else if sectionName.status.rawValue == "inProgress"{
+                    currentStatus = "In Progress"
+                } else if sectionName.status.rawValue == "notStarted"{
+                    currentStatus = "Not Started"
+                }
+            }
+            
+        }
+        
+        return sectionsArr
     }
 
 }
