@@ -35,23 +35,23 @@ class ViewController: UIViewController {
 
     // Creates a matrix of tasks based on their status
     func filterTasks(_ taskList: [Task]) -> [[Task]] {
-        var tempMatrix: [[Task]] = []
-        var tempArray1: [Task] = []
-        var tempArray2: [Task] = []
-        var tempArray3: [Task] = []
-            for task in taskList{
-                switch task.status{
-                case .notStarted:
-                    tempArray1.append(task)
-                case .inProgress:
-                    tempArray2.append(task)
-                case .completed:
-                    tempArray3.append(task)
-                }
+        let sortedTasks = Task.allTasks.sorted { $0.status.rawValue < $1.status.rawValue }
+        let sectionsSet: Set<String> = Set(sortedTasks.map { $0.status.rawValue } )
+        var tempMatrix = Array(repeating: [Task](), count: sectionsSet.count)
+        
+        var currentIndex = 0
+        var currentSection = sortedTasks[0].status.rawValue
+        
+        for task in sortedTasks{
+            if task.status.rawValue == currentSection{
+                tempMatrix[currentIndex].append(task)
+            } else {
+                currentIndex += 1
+                currentSection = task.status.rawValue
+                tempMatrix[currentIndex].append(task)
             }
-        tempMatrix.append(tempArray1)
-        tempMatrix.append(tempArray2)
-        tempMatrix.append(tempArray3)
+        }
+        
         return tempMatrix
     }
     
@@ -101,16 +101,7 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section{
-        case 0:
-            return "Not Started"
-        case 1:
-            return "In Progress"
-        case 2:
-            return "Completed"
-        default:
-            return "Unknown Section"
-        }
+        return tasks[section][0].status.rawValue
     }
 }
 
