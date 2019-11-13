@@ -1,7 +1,7 @@
 import Foundation
 
 struct Task {
-    enum Status {
+    enum Status: Int {
         case notStarted
         case inProgress
         case completed
@@ -62,6 +62,24 @@ struct Task {
                  status: .completed,
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
+    }
+    static func getSection() -> [[Task]] {
+        
+        let sortedStatus = allTasks.sorted { $0.status.rawValue < $1.status.rawValue }
+        let statusTitles: Set<Int> = Set(allTasks.map { $0.status.rawValue})
+        var sectionArr = Array(repeating: [Task](), count: statusTitles.count)
+        var currentStatus = sortedStatus.first?.status
+        var currentIndex = 0
+        for task in sortedStatus {
+            if task.status == currentStatus {
+                sectionArr[currentIndex].append(task)
+            } else {
+                currentIndex += 1
+                currentStatus = task.status
+                sectionArr[currentIndex].append(task)
+            }
+        }
+        return sectionArr
     }
 
 }

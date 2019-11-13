@@ -19,15 +19,23 @@ class ViewController: UIViewController {
         }
     }
 
-   // var taskss = [[Task]]()
+    private var taskss = [[Task]]() {
+        didSet {
+            tableViewTasks.reloadData()
+        }
+    }
     
-    private var  sortAscending = false
+    private var  sortAscending = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableViewTasks.dataSource = self
         sortData(true)
+        dump(Task.getSection())
+        func loadData() {
+          taskss = Task.getSection()
+        }
     }
     
     @IBAction func sortButtonPressed(_ sender: UIBarButtonItem) {
