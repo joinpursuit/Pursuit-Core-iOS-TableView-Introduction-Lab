@@ -9,11 +9,24 @@
 import Foundation
 
 struct Task {
-    enum Status {
-        case notStarted
-        case inProgress
-        case completed
-    }
+    
+    enum Status: String, Comparable {
+        
+        case notStarted = "Not Started"
+        case inProgress = "In Progress"
+        case completed = "Completed"
+        
+        static func < (lhs: Task.Status, rhs: Task.Status) -> Bool {
+            if lhs == .notStarted && (rhs == .inProgress || rhs == .completed) {
+                return true
+            } else if lhs == .inProgress && rhs == .completed {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        }
     
     let name: String
     let status: Status

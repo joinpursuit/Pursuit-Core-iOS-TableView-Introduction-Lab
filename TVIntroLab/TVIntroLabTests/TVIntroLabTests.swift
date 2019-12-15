@@ -30,5 +30,9 @@ class TVIntroLabTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testStatus() {
+        let x = Task.Status.notStarted
+    }
 
 }

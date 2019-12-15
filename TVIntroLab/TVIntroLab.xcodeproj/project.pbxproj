@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E143E99423A5F34C00BA07E0 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E143E99323A5F34C00BA07E0 /* SubtitleTableViewCell.swift */; };
 		E1677FC223A5DBB500F485FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1677FC123A5DBB500F485FC /* AppDelegate.swift */; };
 		E1677FC423A5DBB500F485FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1677FC323A5DBB500F485FC /* SceneDelegate.swift */; };
 		E1677FC623A5DBB500F485FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1677FC523A5DBB500F485FC /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E143E99323A5F34C00BA07E0 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		E1677FBE23A5DBB500F485FC /* TVIntroLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVIntroLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1677FC123A5DBB500F485FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1677FC323A5DBB500F485FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				E1677FC323A5DBB500F485FC /* SceneDelegate.swift */,
 				E1677FE323A5DBD100F485FC /* Task.swift */,
 				E1677FC523A5DBB500F485FC /* ViewController.swift */,
+				E143E99323A5F34C00BA07E0 /* SubtitleTableViewCell.swift */,
 				E1677FC723A5DBB500F485FC /* Main.storyboard */,
 				E1677FCA23A5DBBA00F485FC /* Assets.xcassets */,
 				E1677FCC23A5DBBA00F485FC /* LaunchScreen.storyboard */,
@@ -205,6 +208,7 @@
 			files = (
 				E1677FE423A5DBD100F485FC /* Task.swift in Sources */,
 				E1677FC623A5DBB500F485FC /* ViewController.swift in Sources */,
+				E143E99423A5F34C00BA07E0 /* SubtitleTableViewCell.swift in Sources */,
 				E1677FC223A5DBB500F485FC /* AppDelegate.swift in Sources */,
 				E1677FC423A5DBB500F485FC /* SceneDelegate.swift in Sources */,
 			);
