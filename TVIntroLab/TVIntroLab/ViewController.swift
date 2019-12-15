@@ -12,9 +12,8 @@ class ViewController: UIViewController {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .systemRed
-        button.titleLabel?.textColor = .systemBlue
-        button.titleLabel?.text = "Sort Ascending"
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitle("Sort Ascending", for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         return button
     }()
@@ -50,13 +49,13 @@ class ViewController: UIViewController {
     }
     
     @objc private func buttonPressed(_ sender: UIButton) {
-        switch sender.titleLabel?.text {
+        switch sender.title(for: .normal) {
         case "Sort Ascending":
             tasks = tasks.sorted(by: {$0.name > $1.name })
-            sender.titleLabel?.text = "Sort Descending"
+            sender.setTitle("Sort Descending", for: .normal)
         case "Sort Descending":
             tasks = tasks.sorted(by: {$0.name < $1.name })
-            sender.titleLabel?.text = "Sort Ascending"
+            sender.setTitle("Sort Ascending", for: .normal)
         default:
             break
         }
@@ -74,7 +73,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            button.widthAnchor.constraint(equalToConstant: 150)])
+            button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width + 30)])
         
     }
     
