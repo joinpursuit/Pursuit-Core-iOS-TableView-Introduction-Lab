@@ -10,13 +10,26 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private lazy var button: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemRed
+        button.titleLabel?.textColor = .systemBlue
+        button.titleLabel?.text = "Sort Ascending"
+        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "Task Cell")
         return tableView
     }()
     
-    private var tasks = Task.allTasks
+    private var tasks = Task.allTasks {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     private var groupedTasksKey: [Task.Status] {
         Dictionary(grouping: tasks) { $0.status}
@@ -34,13 +47,35 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureView()
-        print(tasks.count)
-        print(groupedTasks.count)
-        groupedTasks.forEach({print($0.count)})
+    }
+    
+    @objc private func buttonPressed(_ sender: UIButton) {
+        switch sender.titleLabel?.text {
+        case "Sort Ascending":
+            tasks = tasks.sorted(by: {$0.name > $1.name })
+            sender.titleLabel?.text = "Sort Descending"
+        case "Sort Descending":
+            tasks = tasks.sorted(by: {$0.name < $1.name })
+            sender.titleLabel?.text = "Sort Ascending"
+        default:
+            break
+        }
     }
     
     private func configureView() {
+        setupButton()
         setupTableView()
+    }
+    
+    private func setupButton() {
+        view.addSubview(button)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            button.widthAnchor.constraint(equalToConstant: 150)])
+        
     }
     
     private func setupTableView() {
@@ -51,7 +86,7 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: button.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
@@ -75,8 +110,6 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Task Cell", for: indexPath)
-        print(indexPath.section, terminator: " ")
-        print(indexPath.row)
         let task = groupedTasks[indexPath.section][indexPath.row]
         cell.textLabel?.text = task.name
         cell.detailTextLabel?.text = task.dueDate.description
