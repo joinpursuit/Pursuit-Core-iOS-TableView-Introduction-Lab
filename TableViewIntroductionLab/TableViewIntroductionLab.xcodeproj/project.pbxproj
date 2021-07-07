@@ -56,15 +56,23 @@
 		CD55F86C22F9DD69001EF64D /* TableViewIntroductionLab */ = {
 			isa = PBXGroup;
 			children = (
-				CD55F86D22F9DD69001EF64D /* AppDelegate.swift */,
+				EC1F542822FCBB1E005683FD /* Supporting Files */,
 				CD55F86F22F9DD69001EF64D /* ViewController.swift */,
 				CD55F87F22F9DDE2001EF64D /* Task.swift */,
 				CD55F87122F9DD69001EF64D /* Main.storyboard */,
 				CD55F87422F9DD6A001EF64D /* Assets.xcassets */,
-				CD55F87622F9DD6A001EF64D /* LaunchScreen.storyboard */,
 				CD55F87922F9DD6A001EF64D /* Info.plist */,
 			);
 			path = TableViewIntroductionLab;
+			sourceTree = "<group>";
+		};
+		EC1F542822FCBB1E005683FD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CD55F86D22F9DD69001EF64D /* AppDelegate.swift */,
+				CD55F87622F9DD6A001EF64D /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
