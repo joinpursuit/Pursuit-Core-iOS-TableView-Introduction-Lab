@@ -1,10 +1,14 @@
 import Foundation
 
-struct Task {
-    enum Status {
-        case notStarted
-        case inProgress
-        case completed
+struct Task: CustomStringConvertible {
+    var description: String{
+        return "\(dueDate)"
+    }
+    
+    enum Status: String {
+        case notStarted = "Not Started"
+        case inProgress = "In Progress"
+        case completed = "Completed"
     }
     
     let name: String
@@ -63,5 +67,37 @@ struct Task {
                  dueDate: dateFormatter.date(from: "04-13-2020")!),
         ]
     }
-
+    
+  
+//    func newStatus(_ theStatus: Status)->[[Task]]{
+//        var started = Task.allTasks.filter { $0.status == Task.Status.notStarted }
+//        var progress = Task.allTasks.filter { $0.status == Task.Status.inProgress }
+//        var completed = Task.allTasks.filter { $0.status == Task.Status.completed }
+//
+//        return [started,progress,completed]
+//    }
 }
+//    var started = [Task]()
+//    var progress = [Task]()
+//    var completed = [Task]()
+//
+//    mutating func newStatus(_ theStatus: Status)->[[Task]]{
+//        switch theStatus{
+//        case .notStarted:
+//            started.append([Task])
+//            break
+//
+//        case .inProgress:
+//            progress.append([Task])
+//            break
+//
+//        case .completed:
+//            completed.append([Task])
+//            break
+//
+//        default:
+//            print("nothing")
+//        }
+//        return [started,progress,completed]
+//    }
+
